@@ -51,7 +51,7 @@
 	> 2）循环检查某个条件，如果条件不满足，则阻塞直到条件满足；如果条件满足，则向下执行；
 	> 3）某个线程满足条件执行完之后调用notify_one或notify_all唤醒一个或所有的等待线程
 	- **同步队列的实现**
-	```
+```
 #include <mutex>
 #include <thread>
 #include <list>
@@ -122,10 +122,10 @@ private:
     std::condition_variable_any m_notFull;
     int m_maxSize;
 };
-	```
+```
 	> 将上面的代码中std::lock_guard改写成std::unique_lock，把std::condition_variable_any改写为std::condition_variable,
 	> 并且用等待一个判断式的方法来实现一个简单的线程池。
-	```
+```
 #include <thread>
 #include <condition_variable>
 #include <mutex>
@@ -167,15 +167,14 @@ private:
     std::mutex m_mutex;
     std::condition_variable m_notEmpty;
 };
-
-	```
+```
 + 原子变量
 	- C++11提供了一个原子类型std::atomic<T>，可以使用任意类型作为模板参数，C++11内置了整型的原子变量。
 	> 有操作系统基础就能够理解原子量是什么了。
 + call_once/once_flag的使用
 	> call_once用于保证函数在多线程环境中只被调用一次。
 	> 在使用std::call_once时，需要一个once_flag作为call_once的入参。
-	```
+```
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -194,8 +193,7 @@ int main()
     t2.join();
     t3.join();
 }
-
-	```
+```
 + 异步操作
 	- C++11提供了异步操作相关的类，有std::future、std::promise和std::package_task。
 	> std::future作为异步结果的传输通道，可以获取线程函数的返回值；
